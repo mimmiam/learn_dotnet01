@@ -41,29 +41,22 @@ app.MapGet("api/amphur/{id}", (int id) =>
     }catch{
         return null;
     }
-
 });
 
 app.MapPost("api/amphur/", (int id, string name, int provinceID) =>
 {
-    
-        var ampService = new AmphurService();
-        ampService.Create(id, name, provinceID);
-        return "success";
-  
-
+    var ampService = new AmphurService();
+    ampService.Create(id, name, provinceID);
+    return "success";
 });
 
 app.MapPut("api/amphur/{id}", (int id, string name) =>
 {
-    try
-    {
+    try{
         var ampService = new AmphurService();
         ampService.Update(id, name);
         return "success";
-    }
-    catch
-    {
+    }catch{
         return null;
     }
 
@@ -71,14 +64,11 @@ app.MapPut("api/amphur/{id}", (int id, string name) =>
 
 app.MapDelete("api/amphur/{id}", (int id) =>
 {
-    try
-    {
+    try{
         var ampService = new AmphurService();
         ampService.Delete(id);
         return "success";
-    }
-    catch
-    {
+    }catch{
         return null;
     }
 
