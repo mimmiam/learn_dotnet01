@@ -8,7 +8,7 @@ class AppDatabase : DbContext
 {
 
 
-    public DbSet<district> district => Set<district>();
+    public DbSet<Amphurs> Amphurs => Set<Amphurs>();
 
 
     //public DbSet<AlarmSpeed> AlarmSpeed => Set<AlarmSpeed>();

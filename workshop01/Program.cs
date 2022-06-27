@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using workshop01.Helper;
 using workshop01.Model;
+using workshop01.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,67 +23,65 @@ app.UseHttpsRedirection();
 
 
 app.MapGet("api/amphur", () => {
+    try{
+        var ampService = new AmphurService();
+        var result = ampService.Get();
+        return result;
+    }catch{
+        return null;
+    }
+});
 
+app.MapGet("api/amphur/{id}", (int id) =>
+{
+    try{
+        var ampService = new AmphurService();
+        var result = ampService.Get(id);
+        return result;
+    }catch{
+        return null;
+    }
+
+});
+
+app.MapPost("api/amphur/", (int id, string name, int provinceID) =>
+{
+    
+        var ampService = new AmphurService();
+        ampService.Create(id, name, provinceID);
+        return "success";
+  
+
+});
+
+app.MapPut("api/amphur/{id}", (int id, string name) =>
+{
     try
     {
-        using var entitie = new AppDatabase();
-        var amphursList = entitie.district.ToList();
-        return amphursList;
+        var ampService = new AmphurService();
+        ampService.Update(id, name);
+        return "success";
     }
     catch
     {
         return null;
     }
 
-
 });
 
-app.MapGet("api/amphur/", (int id) =>
+app.MapDelete("api/amphur/{id}", (int id) =>
 {
-
     try
     {
-        using var entitie = new AppDatabase();
-        var amphur = entitie.district.ToList();
-
-        entitie.district.Where(x => x.amphur_id == id).ToList();
-
-        //ADD
-        //conf conflist = new conf() { config_name = "xxxx", config_value = "X", last_modify = null };
-        //entitie.confs.Add(conflist);
-        //districtList.config_value = "XXXD";
-        //entitie.SaveChanges();
-        return amphur;
+        var ampService = new AmphurService();
+        ampService.Delete(id);
+        return "success";
     }
-    catch //(Exception ex)
+    catch
     {
-        return null;// (ex.InnerException != null) ? (ex.InnerException.Message) : (ex.Message);
+        return null;
     }
 
 });
-
-//app.MapPost("api/amphur", () =>
-//{
-//    try
-//    {
-//        using var entitie = new AppDatabase();
-//        district amphur = district() { amphur_id = 01, amphur_name = "พญาไท", province_id = 01 };
-
-//        entitie.district.Add(amphur);
-//        entitie.SaveChanges();
-
-//        //ADD
-//        //conf conflist = new conf() { config_name = "xxxx", config_value = "X", last_modify = null };
-//        //entitie.confs.Add(conflist);
-//        //districtList.config_value = "XXXD";
-//        //entitie.SaveChanges();
-//        //return amphur;
-//    }
-//    catch //(Exception ex)
-//    {
-//        return null;// (ex.InnerException != null) ? (ex.InnerException.Message) : (ex.Message);
-//    }
-
-//});
 
 app.Run();

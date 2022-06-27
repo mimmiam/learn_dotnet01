@@ -22,9 +22,11 @@
     <None Remove="Helper\" />
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
+    <None Remove="Service\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
     <Folder Include="Helper\" />
+    <Folder Include="Service\" />
   </ItemGroup>
 </Project>

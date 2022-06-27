@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace workshop01.Model
 {
-    public class district
+    public class Amphurs
     {
 
         [Key]
-        public int? amphur_id { get; set; }
+        public int amphur_id { get; set; }
         public string? amphur_name { get; set; }
-        public int? province_id { get; set; }
+        public int province_id { get; set; }
         //public Nullable<System.DateTime> last_modify { get; set; }
     }
 }
