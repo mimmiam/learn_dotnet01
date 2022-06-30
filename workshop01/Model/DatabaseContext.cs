@@ -8,7 +8,7 @@ class AppDatabase : DbContext
 {
 
 
-    public DbSet<Amphurs> Amphurs => Set<Amphurs>();
+    public DbSet<AmphurModel> AmphurModel => Set<AmphurModel>();
 
 
     //public DbSet<AlarmSpeed> AlarmSpeed => Set<AlarmSpeed>();

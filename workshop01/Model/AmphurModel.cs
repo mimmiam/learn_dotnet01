@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace workshop01.Model
 {
-    public class Amphurs
+    public class AmphurModel
     {
 
         [Key]

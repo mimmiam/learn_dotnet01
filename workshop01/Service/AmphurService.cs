@@ -15,13 +15,13 @@ namespace workshop01.Service
             }
         }
 
-        public List<Amphurs> Get(int? id = null)
+        public List<AmphurModel> Get(int? id = null)
         {
             if(id != null )
             {
-                return Db.Amphurs.Where(x => x.amphur_id == id).ToList();
+                return Db.AmphurModel.Where(x => x.amphur_id == id).ToList();
             }
-            return Db.Amphurs.ToList();
+            return Db.AmphurModel.ToList();
         }
 
 
@@ -30,11 +30,11 @@ namespace workshop01.Service
         {
             using(var entity = new AppDatabase() )
             {
-                Amphurs temp = new Amphurs();
+                AmphurModel temp = new AmphurModel();
                 temp.amphur_id = amphurId;
                 temp.amphur_name = amphurName;
                 temp.province_id = provinceId;
-                entity.Amphurs.Add(temp);
+                entity.AmphurModel.Add(temp);
                 entity.SaveChanges();
             }
         }
@@ -42,15 +42,15 @@ namespace workshop01.Service
 
         public void Update(int amphurId, string amphurName)
         { 
-            var temp = Db.Amphurs.Where(x => x.amphur_id == amphurId).Single();
+            var temp = Db.AmphurModel.Where(x => x.amphur_id == amphurId).Single();
             temp.amphur_name = amphurName;
             Db.SaveChanges();
         }
 
         public void Delete(int amphurId)
         {
-            var temp = Db.Amphurs.Where(x => x.amphur_id == amphurId).Single();
-            Db.Amphurs.Remove(temp);
+            var temp = Db.AmphurModel.Where(x => x.amphur_id == amphurId).Single();
+            Db.AmphurModel.Remove(temp);
             Db.SaveChanges();
         }
     }
